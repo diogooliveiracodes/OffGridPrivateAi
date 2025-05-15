@@ -10,7 +10,7 @@ export const useChatStore = defineStore('chat', {
   actions: {
     async sendMessage(message: MessageInterface) {
       this.messages.push(message);
-      const response = await messageService.sendMessage(message);
+      const response = await messageService.sendMessage(this.messages);
       this.messages.push(response);
     }
   }
