@@ -1,7 +1,7 @@
 services:
   ollama:
     image: ollama/ollama
-    container_name: ollama
+    container_name: ollama1
     ports:
       - "11434:11434"
     volumes:
@@ -15,6 +15,8 @@ services:
               capabilities: [gpu]
     tty: true
     stdin_open: true
+    entrypoint: sh
+    command: -c "ollama serve & sleep 5 && ollama pull gemma2:2b && tail -f /dev/null"
 
   app:
     build: ./app
